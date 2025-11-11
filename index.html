@@ -1,27 +1,24 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Words: A Creative Reflex Trainer</title>
+    <title>Words: Connect Unrelated Words, Practice Creative Reflex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="app-container">
         
         <div class="theme-container">
-            <h3>THEME</h3>
+            <h3>YOUR THEME</h3>
             <h2 id="theme-word">Loading...</h2>
-            <button id="new-theme-btn">New Theme</button>
+            <button id="new-theme-btn" class="secondary-btn">New Theme</button>
         </div>
-        <div class="timer-controls">
-            <span id="timer-display">60</span>
-            <div class="toggle-container">
-                <input type="checkbox" id="timer-toggle" />
-                <label for="timer-toggle">Enable Timer</label>
-            </div>
-        </div>
-
         <div class="words-container">
             <h1 id="word1">Loading</h1>
             <h1 class="connector">&</h1>
@@ -29,18 +26,27 @@
         </div>
 
         <div class="input-container">
-            <input type="text" id="association-input" placeholder="Connect the pair to the theme. Press Enter."/>
+            <input type="text" id="association-input" placeholder="Connect the pair to the theme..."/>
         </div>
 
-        <button id="new-words-btn">New Word Pair</button>
+        <button id="new-words-btn" class="primary-btn">New Word Pair</button>
 
-        <div class="history-container">
+        <div class="timer-controls">
+            <span id="timer-display">60</span>
+            <div class="toggle-container">
+                <input type="checkbox" id="timer-toggle" />
+                <label for="timer-toggle">Enable 60s Timer</label>
+            </div>
+        </div>
+
+        <div class="history-container" id="history-box">
             <h3>Session Log</h3>
             <ul id="history-log">
                 </ul>
         </div>
 
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
