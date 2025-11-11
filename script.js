@@ -1,101 +1,126 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Core Feature 1: Word Bank ---
-    // A pre-curated word bank. This can be expanded significantly.
-    const wordBank = [
-        "Shadow", "River", "Clock", "Whisper", "Bridge", "Forest", "Market",
-        "Silence", "Future", "Spark", "Code", "Mirror", "Journey", "Velvet",
-        "Queen", "Anchor", "Byte", "Mountain", "Ocean", "Echo", "Glass",
-        "Thread", "Rust", "Music", "Key", "Pocket", "System", "Hope", "North",
-        "Wheel", "Signal", "Mask", "Atlas", "Root", "Canvas", "Grain", "Steam"
-    ];
-
     // --- DOM Elements ---
     const word1El = document.getElementById('word1');
     const word2El = document.getElementById('word2');
+    const themeWordEl = document.getElementById('theme-word');
     const inputEl = document.getElementById('association-input');
-    const newBtn = document.getElementById('new-words-btn');
+    const newWordsBtn = document.getElementById('new-words-btn');
+    const newThemeBtn = document.getElementById('new-theme-btn');
     const timerToggle = document.getElementById('timer-toggle');
     const timerDisplay = document.getElementById('timer-display');
     const historyLogEl = document.getElementById('history-log');
     const historyContainer = document.querySelector('.history-container');
 
     // --- State ---
+    let wordBank = []; // Will be populated from 'words.txt'
     let currentWord1 = '';
     let currentWord2 = '';
+    let currentTheme = '';
     let sessionLog = [];
     let timerInterval;
     let timeLeft = 60;
 
-    // --- Core Function: Get New Words ---
+    // --- NEW: Load Word Bank from File ---
+    async function loadWordBank() {
+        try {
+            const response = await fetch('words.txt');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const text = await response.text();
+            
+            // Process the text file
+            wordBank = text.split('\n') // Split by new line
+                           .map(word => word.trim()) // Remove whitespace
+                           .filter(word => word.length > 0); // Remove empty lines
+            
+            if (wordBank.length === 0) {
+                throw new Error('Word bank file is empty or formatted incorrectly.');
+            }
+            
+            console.log(`Word bank loaded successfully with ${wordBank.length} words.`);
+
+        } catch (error) {
+            console.error('Failed to load word bank:', error);
+            // Fallback in case fetch fails
+            wordBank = ["Error", "Loading", "File", "Please", "Check", "words.txt"];
+        }
+    }
+
+    // --- Get New Theme ---
+    function generateTheme() {
+        let newTheme = wordBank[Math.floor(Math.random() * wordBank.length)];
+        while (newTheme === currentWord1 || newTheme === currentWord2) {
+            newTheme = wordBank[Math.floor(Math.random() * wordBank.length)];
+        }
+        currentTheme = newTheme;
+        themeWordEl.textContent = currentTheme;
+    }
+
+    // --- Get New Words ---
     function generateWords() {
-        // 1. Get two different random words
         let newWord1 = wordBank[Math.floor(Math.random() * wordBank.length)];
         let newWord2 = wordBank[Math.floor(Math.random() * wordBank.length)];
 
-        while (newWord1 === newWord2) {
-            newWord2 = wordBank[Math.floor(Math.random() * wordBank.length)];
+        while (newWord1 === newWord2 || newWord1 === currentTheme || newWord2 === currentTheme) {
+            newWord1 = wordBank[Math.floor(Math.random() * wordBank.length)];
+            // Re-check for newWord1 === newWord2 in case it's a small list
+            if (newWord1 === newWord2) {
+                 newWord2 = wordBank[Math.floor(Math.random() * wordBank.length)];
+            }
         }
 
-        // 2. Update state and display
         currentWord1 = newWord1;
         currentWord2 = newWord2;
         word1El.textContent = currentWord1;
         word2El.textContent = currentWord2;
-
-        // 3. Clear input
         inputEl.value = '';
         
-        // 4. Handle timer
         resetAndStartTimer();
     }
 
-    // --- Core Feature 3 & 4: Input & New Words Button ---
+    // --- Log Association ---
     function logAssociation() {
         const connection = inputEl.value.trim();
         if (connection) {
-            // Log the association
             const entry = {
+                theme: currentTheme,
                 pair: `${currentWord1} & ${currentWord2}`,
                 connection: connection
             };
             sessionLog.push(entry);
 
-            // Update the visual log
             const li = document.createElement('li');
-            li.innerHTML = `<strong>${entry.pair}:</strong> ${entry.connection}`;
-            historyLogEl.prepend(li); // Add to top
+            li.innerHTML = `<strong>Theme: ${entry.theme}</strong><br>
+                            <strong>Pair: ${entry.pair}</strong><br>
+                            ${entry.connection}`;
+            historyLogEl.prepend(li); 
 
-            // Make log visible if it's the first entry
             if (!historyContainer.classList.contains('visible')) {
                 historyContainer.classList.add('visible');
             }
-
-            // Get new words automatically after logging
+            
             generateWords();
         }
     }
 
-    // --- Core Feature 5: Optional Timer ---
+    // --- Timer Functions ---
     function startTimer() {
         if (!timerToggle.checked) return;
-
         timerDisplay.classList.add('active');
         timeLeft = 60;
         timerDisplay.textContent = timeLeft;
-        timerDisplay.style.color = '#555'; // Reset color
+        timerDisplay.style.color = '#555';
 
         timerInterval = setInterval(() => {
             timeLeft--;
             timerDisplay.textContent = timeLeft;
-
             if (timeLeft <= 10) {
-                timerDisplay.style.color = '#d90429'; // Warning color
+                timerDisplay.style.color = '#d90429';
             }
-
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
-                // Time's up! Force new words
                 generateWords();
             }
         }, 1000);
@@ -107,22 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
             startTimer();
         } else {
             timerDisplay.classList.remove('active');
-        }
+VSC       }
     }
 
     // --- Event Listeners ---
-    
-    // "New Words" button
-    newBtn.addEventListener('click', generateWords);
+    newWordsBtn.addEventListener('click', generateWords);
+    newThemeBtn.addEventListener('click', generateTheme);
 
-    // "Enter" key in the input field
     inputEl.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             logAssociation();
         }
     });
 
-    // Timer toggle
     timerToggle.addEventListener('change', () => {
         if (timerToggle.checked) {
             resetAndStartTimer();
@@ -133,5 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Initial Load ---
-    generateWords(); // Load the first pair on page load
+    async function init() {
+        await loadWordBank(); // Wait for words to load first
+        
+        // Only start the app if the word bank loaded
+        if (wordBank.length > 3) {
+            generateTheme();
+            generateWords();
+        } else {
+            // Display error to the user
+            themeWordEl.textContent = "Error";
+            word1El.textContent = "Word";
+            word2El.textContent = "Bank";
+            console.error("App cannot start: Word bank is too small or failed to load.");
+        }
+    }
+    
+    init(); // Run the new initialization
 });
