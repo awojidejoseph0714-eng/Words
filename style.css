@@ -7,6 +7,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 2rem 0;
 }
 
 .app-container {
@@ -15,6 +16,48 @@ body {
     text-align: center;
     padding: 2rem;
 }
+
+/* --- NEW THEME STYLES --- */
+.theme-container {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 12px;
+}
+
+.theme-container h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #888;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+}
+
+#theme-word {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #d90429; /* Stand-out color for the theme */
+    margin: 0 0 1rem 0;
+}
+
+#new-theme-btn {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #666;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#new-theme-btn:hover {
+    background-color: #333;
+}
+/* --- END THEME STYLES --- */
 
 .words-container {
     display: flex;
@@ -48,7 +91,7 @@ h1 {
     font-size: 1.1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-sizing: border-box; /* Important for 100% width */
+    box-sizing: border-box;
     text-align: center;
 }
 
@@ -57,7 +100,7 @@ h1 {
     border-color: transparent;
 }
 
-#new-words-btn {
+#new-words-btn { /* This is the main button */
     font-size: 1rem;
     font-weight: 600;
     padding: 0.8rem 1.5rem;
@@ -86,7 +129,7 @@ h1 {
 #timer-display {
     font-size: 1.5rem;
     font-weight: 600;
-    visibility: hidden; /* Hidden by default */
+    visibility: hidden;
 }
 
 #timer-display.active {
@@ -104,7 +147,7 @@ h1 {
     margin-top: 3rem;
     text-align: left;
     color: #666;
-    display: none; /* Hide log by default to keep UI minimal */
+    display: none;
 }
 
 .history-container.visible {
@@ -116,7 +159,7 @@ h1 {
     padding-left: 0;
     font-family: monospace;
     font-size: 0.9rem;
-    max-height: 150px;
+    max-height: 200px;
     overflow-y: auto;
     background: #f9f9f9;
     border: 1px solid #eee;
@@ -125,9 +168,10 @@ h1 {
 }
 
 #history-log li {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     border-bottom: 1px dashed #ddd;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    line-height: 1.4;
 }
 
 #history-log li:last-child {
