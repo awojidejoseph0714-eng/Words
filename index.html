@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-M">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Words: A Creative Reflex Trainer</title>
     <link rel="stylesheet" href="style.css">
@@ -9,6 +9,11 @@
 <body>
     <div class="app-container">
         
+        <div class="theme-container">
+            <h3>THEME</h3>
+            <h2 id="theme-word">Loading...</h2>
+            <button id="new-theme-btn">New Theme</button>
+        </div>
         <div class="timer-controls">
             <span id="timer-display">60</span>
             <div class="toggle-container">
@@ -24,10 +29,10 @@
         </div>
 
         <div class="input-container">
-            <input type="text" id="association-input" placeholder="Connect the words. Press Enter to log."/>
+            <input type="text" id="association-input" placeholder="Connect the pair to the theme. Press Enter."/>
         </div>
 
-        <button id="new-words-btn">New Words</button>
+        <button id="new-words-btn">New Word Pair</button>
 
         <div class="history-container">
             <h3>Session Log</h3>
