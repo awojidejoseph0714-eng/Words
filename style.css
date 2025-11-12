@@ -1,4 +1,66 @@
 /* --- Global Reset & Font --- */
+/* --- INTRO BLOCK --- */
+.intro-container {
+    text-align: left;
+    padding: 1.25rem 1.5rem;
+    background: #fdfdfd;
+    border: 1px solid #eef;
+    border-radius: 12px;
+    margin-bottom: 2rem; /* Spacing from the tool */
+}
+.intro-container h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #4a47a3; /* theme color */
+    margin-bottom: 0.75rem;
+}
+.intro-container p {
+    font-size: 0.95rem;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+.intro-container p:last-child {
+    margin-bottom: 0;
+}
+/* --- END INTRO BLOCK --- */
+
+
+/* --- 💡 HOW-TO GUIDE SECTION (Added UL styles) --- */
+
+.how-to-section {
+    margin-top: 2.5rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+.how-to-content p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.how-to-content ol {
+    margin-left: 1.5rem;
+}
+.how-to-content li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+/* NEW STYLES */
+.how-to-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    list-style-type: disc;
+}
+.how-to-content ul li {
+    border-bottom: none;
+    padding-bottom: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+/* END OF NEW STYLES */
+
+ 
 * {
     margin: 0;
     padding: 0;
