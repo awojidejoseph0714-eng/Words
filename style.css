@@ -226,3 +226,74 @@ h1 {
         font-size: 1.75rem;
     }
 }
+/* --- 💡 HOW-TO GUIDE SECTION --- */
+
+.how-to-section {
+    margin-top: 2.5rem;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 2rem;
+}
+
+/* Hide the actual checkbox */
+.how-to-checkbox {
+    display: none;
+}
+
+/* Style the "How-to-work?" link */
+.how-to-label-open {
+    font-size: 0.9rem;
+    color: #3366FF;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+.how-to-label-open:hover {
+    color: #254cbe;
+}
+
+/* The guide content, hidden by default */
+.how-to-content {
+    display: none;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: #fdfdfd;
+    border: 1px solid #eef;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.how-to-content p {
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.how-to-content ol {
+    margin-left: 1.5rem;
+}
+
+.how-to-content li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.how-to-label-close {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 1.5rem;
+}
+
+/* THE MAGIC: Show the content when the hidden checkbox is checked */
+.how-to-checkbox:checked + .how-to-label-open + .how-to-content {
+    display: block;
+}
+
+/* And hide the "Open" link when it's open */
+.how-to-checkbox:checked + .how-to-label-open {
+    display: none;
+}
