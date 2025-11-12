@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CW2VXZ0B1H"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CW2VXZ0B1H');
-</script>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Words: A Creative Reflex Trainer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="app-container">
-        
+
+        <div class="intro-container">
+            <h2>Welcome to the "Words" Reflex</h2>
+            <p>
+                This is a reflex trainer for creative thinkers. 
+                It's designed to simulate the "mental leap" of real-world branding.
+            </p>
+            <p>
+                <strong>Your Task:</strong> Connect the two <strong>Words</strong> in a way that serves the <strong>Theme</strong>.
+                Press <strong>Enter</strong> to log your idea and get a new pair.
+            </p>
+        </div>
         <div class="theme-container">
             <h3>YOUR THEME</h3>
             <h2 id="theme-word">Loading...</h2>
@@ -37,7 +37,7 @@
         </div>
 
         <div class="input-container">
-            <input type="text" id="association-input" placeholder="Connect the pair to the theme..."/>
+            <textarea id="association-input" placeholder="Connect the pair to the theme..." rows="1"></textarea>
         </div>
 
         <button id="new-words-btn" class="primary-btn">New Word Pair</button>
@@ -55,24 +55,50 @@
             <ul id="history-log">
                 </ul>
         </div>
+
         <div class="how-to-section">
             <input type="checkbox" id="how-to-toggle" class="how-to-checkbox">
-
             <label for="how-to-toggle" class="how-to-label-open">
-                How does this work?
+                The Story & How-To Guide
             </label>
             
             <div id="how-to-guide" class="how-to-content">
-                <p><strong>The Goal:</strong> Connect the two <strong>Words</strong> in a way that fits the <strong>Theme</strong>.</p>
+                <p><strong>Why does this exist?</strong></p>
+                <p>
+                    This tool was built to simulate a single, crucial moment in creative work: 
+                    <strong>the mental leap</strong>.
+                    A copywriter is constantly asked to connect a boring product feature (like <em>"Steel"</em>) 
+                    with a deep human emotion (like <em>"Safety"</em>) under a big brand idea (like <em>"Family"</em>).
+                    This tool is a gym for that exact muscle.
+                </p>
+                
+                <p><strong>What It Does & The Benefits</strong></p>
+                <p>
+                    It's a "creative reflex trainer." By forcing you to make rapid, 
+                    unrelated connections, it helps you:
+                </p>
+                <ul>
+                    <li><strong>Build Mental Flexibility:</strong> Stop thinking in straight lines.</li>
+                    <li><strong>Warm Up Your Brain:</strong> Use it for 5 minutes before a big project.</li>
+                    <li><strong>Train Lateral Thinking:</strong> Find new pathways between ideas.</li>
+                    <li><strong>Practice "The Big Idea":</strong> Practice tying every concept back to a core theme.</li>
+                </ul>
+
+                <p><strong>How To Use It </strong></p>
                 <ol>
-                    <li>Your <strong>Theme</strong> is the topic of your discussion.</li>
-                    <li>Your <strong>Words</strong> are the random words you must relate to the topic and to each other.</li>
-                    <li>Type a sentence that relates the 3 words together in a unconventional way into the box and press <strong>Enter</strong> to log it.</li>
-                    <li><strong>"New Word Pair"</strong> keeps the theme but changes the words.</li>
-                    <li><strong>"New Theme"</strong> changes the theme.</li>
+                    <li>Your <strong>Theme</strong> is your brand mandate. It cannot change.</li>
+                    <li>Your <strong>Words</strong> are your random facts. They are disposable.</li>
+                    <li>Your <strong>Task</strong> is to find a story that connects the <strong>Words</strong> 
+                        *back to* the <strong>Theme</strong>.</li>
+                    <li>Type your connection. Press <strong>Enter</strong> (without Shift) to log it and get a new pair.</li>
+                    <li>Click "New Word Pair" or "New Theme" at any time.</li>
                 </ol>
                 <label for="how-to-toggle" class="how-to-label-close">(Click to close)</label>
             </div>
-        </div> <script src="script.js"></script>
+            </div>
+
+    </div> 
+
+    <script src="script.js"></script>
 </body>
 </html>
